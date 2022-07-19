@@ -1,15 +1,32 @@
+import { identifier } from '@babel/types'
 import { defineStore } from 'pinia'
 
-export const useStore = defineStore('counter', {
+interface Todo {
+  id: number;
+  todo: string;
+  checked: boolean;
+}
+
+export const useTodoListStore = defineStore('todoList', {
   state: () => {
-    return { count: 0, name: 'Atif', show: false }
+    return {
+      todoList: [] as Todo[],
+      isFetching: false,
+    }
   },
   actions: {
-    increment() {
-      this.count++
+    addTodo(newTodo: Todo) {
+      this.todoList.push( newTodo )
     },
-    decrement() {
-      this.count--
+    deleteTodo(itemID) {
+      this.todoList = this.todoList.filter((object) => {
+        return object.id !== itemID;
+      });
+    },
+    updateTodoChecked(itemID) {
+      this.todoList = this.todoList.filter((object) => {
+        return object.id !== itemID;
+      });
     },
   },
 })

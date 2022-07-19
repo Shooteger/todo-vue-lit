@@ -19,7 +19,7 @@
       >
         <ul class="navbar-nav mr-auto lg:flex lg:flex-row">
           <li class="nav-item">
-            <nuxt-link
+            <a
               class="
                 nav-link
                 block
@@ -33,10 +33,10 @@
                 duration-150
                 ease-in-out
               "
-              to="#"
+              href="#"
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
-              >Home</nuxt-link
+              >Home</a
             >
           </li>
           <li class="nav-item mb-2 lg:mb-0">
@@ -66,9 +66,3 @@
     </div>
   </nav>
 </template>
-
-<script lang="ts" setup>
-
-</script>
-
-<style></style>
