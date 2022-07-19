@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import Navbar from "./components/Navbar.vue";
+import Nav from "./components/Nav.vue";
+import Todo from "./components/Todo.vue";
 </script>
 
 <template>
-  <section class="bg-gray">
-      <Navbar />
+  <div>
+    <header class="bg-gray">
+      <Nav />
+    </header>
     <main class="min-h-screen container mx-auto">
-      <div class="py-24">
-        <router-view />
-      </div>
+      <Todo />
     </main>
-  </section>
-  <div class="square" v-if="true" xyz="inherit up"></div>
-  <div class="square" v-if="true" xyz="inherit down"></div>
+  </div>
 </template>
 <style lang="postcss">
 body::-webkit-scrollbar {
