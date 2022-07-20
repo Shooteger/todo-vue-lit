@@ -1,3 +1,23 @@
+<script lang="ts">
+import { mapState, mapActions } from "pinia";
+import { storeToRefs } from 'pinia'
+import { useTodoListStore } from "../store/store";
+
+const { todoList, isFetching, error } = storeToRefs(useTodoListStore())
+const { fetchTodos } = useTodoListStore()
+
+fetchTodos()
+/*
+export default {
+  data() {
+    return {
+        newTodoText: '' as string,
+    }
+  },
+};
+*/
+</script>
+
 <template>
   <div class="py-6 w-full h-full bg-gray-200">
     <div class="container mx-auto">
@@ -131,6 +151,7 @@
         </div>
       </div>
       <div class="py-6 w-full h-full bg-gray-200">
+        <p v-if="isFetching">Loading posts...</p>
         <div class="container mx-auto">
           <div
             class="
@@ -148,8 +169,8 @@
               rounded-md
             "
           >
-            <p class="text-lg text-gray-800 font-semibold mb-4">Your todo's</p>
-            <div class="flex bg-indigo-100 rounded-md relative">
+            <p v-if="todoList" class="text-lg text-gray-800 font-semibold mb-4">Your todo's</p>
+            <div class="flex bg-indigo-100 rounded-md relative" v-for="todo in todos" :key="todo.id">
               <div class="flex items-center justify-center w-2/12 h-16">
                 <input type="checkbox" class="w-4 h-4 rounded" />
               </div>
@@ -182,15 +203,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { mapState, mapActions } from 'pinia'
-import { useTodoListStore } from '../store/store'
-
-export default {
-
-};
-</script>
 
 <style>
 .checkbox:checked {
